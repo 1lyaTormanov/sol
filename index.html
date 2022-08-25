@@ -5,12 +5,107 @@
     <title>Sol Agency</title>
     <link href="./assets/fonts/font.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="intl/build/css/intlTelInput.css">
 </head>
 <body>
     <div id="root">
+        <div id="modalLayout">
+            <div class="modal">
+                <img src="assets/close-icon.png" class="close-icon"/>
+                <div class="modalTitle">
+                    Contact us
+                </div>
+                <form class="modal_fields">
+                    <div class="field">
+                        <div class="field_label">
+                    <span>*
+                    </span>
+                            <span>
+                        Your name:
+                    </span>
+                        </div>
+                        <input required/>
+                    </div>
+                    <div class="field">
+                        <div class="field_label">
+                    <span>*
+                    </span>
+                            <span>
+                        Your e-mail:
+                    </span>
+                        </div>
+                        <input required/>
+                    </div>
+                    <div class="field">
+                        <div class="field_label">
+                    <span>*
+                    </span>
+                            <span>
+                        Your number phone:
+                    </span>
+                        </div>
+                        <input required id="mobile-number" type="tel"/>
+                    </div>
+                    <div class="field checkbox_field">
+                        <div class="field_label">
+                            <div>
+                                Your messenger:
+                            </div>
+                        </div>
+                        <div class="checkboxes">
+                            <div class="form-control">
+                                <input id="telegram" type="radio" name="social">
+                                <label  for="telegram">
+                                    Telegram
+                                </label>
+                            </div>
+                            <div class="form-control">
+                                <input id="instagram" type="radio" name="social">
+                                <label  for="instagram">
+                                    Instagram
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="article_action submitForm">
+                        <p>Submit form</p>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="container">
+            <div class="navbar_mobile">
+                <div>
+                    <a>
+                        Home
+                    </a>
+                    <a>
+                        About Us
+                    </a>
+                    <a>
+                        Services
+                    </a>
+                    <a>
+                        Case Studies
+                    </a>
+                </div>
+                <div>
+                    <a>
+                        <img src="assets/instagram-header.png"/>
+                    </a>
+                    <a>
+                        <img src="assets/facebook-header.png"/>
+                    </a>
+                    <a>
+                        <img src="assets/telegram-header.png"/>
+                    </a>
+                </div>
+            </div>
             <header>
                 <img src="assets/logo.png"/>
+                <div id="burger_icon" class="burger_icon">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
                 <div class="nav_links">
                    <div>
                        <a>
@@ -72,16 +167,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="article_right">
-                    <div class="article_right_imageLayout">
-                        <img src="assets/article-bg-left.png"/>
-                        <img src="assets/article-bg-mid.png"/>
-                        <img src="assets/article-bg-right.png"/>
-                    </div>
-                </div>
+                <img src="assets/article.png"/>
             </article>
             <div class="article_actions">
-                <button class="article_action">
+                <button id="modal_trigger" class="article_action">
                     Get the Details
                 </button>
                 <button class="earn_action">
@@ -249,5 +338,28 @@
 
         </footer>
     </div>
+    <script src="jqwery/jquery-3.6.0.min.map"></script>
+    <script src="https://kit.fontawesome.com/45cc847fa0.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/45cc847fa0.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="intl/build/js/intlTelInput.js"></script>
+    <script>
+        var input = document.querySelector("#mobile-number");
+        var iti = intlTelInput(input, {
+            // customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+            //     return "e.g. " + selectedCountryPlaceholder;
+            // },
+            utilsScript: "intl/build/js/utils.js",
+            autoPlaceholder: "aggressive"
+        });
+        input.addEventListener('blur', function() {
+            if(!iti.isValidNumber()){
+                input.classList.add('phone-error')
+            }
+            else{
+                input.classList.remove('phone-error')
+            }
+        })
+    </script>
 </body>
 </html>
